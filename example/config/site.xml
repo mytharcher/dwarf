@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site>
+	<decorators>
+		<group template="/wrap/doc.tpl">
+			<include>/targets/docs/*.html</include>
+			<include>/targets/docs/*.text</include>
+		</group>
+		<group template="/wrap/page.tpl">
+			<include>/targets/*.html</include>
+			<include>/wrap/doc.tpl</include>
+		</group>
+	</decorators>
+	<variables>
+		<import>/config/global.ini</import>
+	</variables>
+</site>

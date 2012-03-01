@@ -1,0 +1,26 @@
+﻿<!-- block(vars) -->
+<!-- vars(
+page.mainClass=doc-collapse-menu
+page.title=想法清单
+) -->
+<!-- block(docPath) -->
+[想法清单](/docs/develop/idea-list.html)
+<!-- block(mainBody) -->
+# 想法清单
+
+这个页面将记录所有与elf+js相关的想法和创意，包括已有功能改进，新功能期许等。其中bug将不在此列，如发现bug，请移步[bug报告](/doc/support/bug-report.html)。
+
+想法 | 类型 | 提出 | 状态
+-|-|-|-
+XArray类当调用原生数组方法时返回XArray扩展的数组对象 | 新功能 | @2012-01-08 by [mytharcher][] | 开发中
+js.dom.Event.add方法支持选择器delegate | 新功能 | @2012-01-06 by [mytharcher][] | 开发中
+XArray类remove方法支持(通过filter删除元素) | 新功能 | @2011-12-29 by [mytharcher][] | 不支持(需求与filter方法重复)
+改写[ER和esui](https://github/erik168/ER)底层，支持更换基础库，创建基于elf+js的ER和esui项目 | 新项目 | @2011-12-29 by [mytharcher][] | 调研中
+使用github pages重写网站 | 项目托管 | @2011-12-29 by [mytharcher][] | 调研中
+创建项目集，以更方便的获取所有相关代码 | 项目托管 | @2011-12-29 by [mytharcher][] | 调研中
+CommonJS的require机制 | 架构升级 | @2011-12-29 by [Franky][] | 暂不考虑
+
+-EOF-
+
+[Franky]: mailto:franky@gmail.com
+[mytharcher]: mailto:mytharcher@gmail.com

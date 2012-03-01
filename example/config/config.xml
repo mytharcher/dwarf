@@ -1,0 +1,64 @@
+<?php
+$cfg = array(
+	'vars' => array(
+		'version' => '0.3.0',
+		'version.date' => '2011-12-24',
+		'images.logo.src' => '/assets/img/logo.png'
+	),
+	'group' => array()
+);
+
+$cfg['group']['/wrap/page.tpl'] = array(
+	'/targets/index.html',
+	'/wrap/content.tpl'
+);
+
+$cfg['group']['/wrap/content.tpl'] = array(
+	'/targets/downloads/*.text',
+	'/wrap/doc.tpl'
+);
+
+$cfg['group']['/wrap/doc.tpl'] = array(
+	'/targets/docs/*.html',
+	'/targets/docs/*.text',
+	'/wrap/doc-advance.tpl'
+);
+
+$cfg['group']['/wrap/doc-advance.tpl'] = array(
+	'/targets/docs/advance/*.html',
+	'/targets/docs/advance/*.text'
+);
+?>
+<config>
+	<variables>
+		<var name="version" value="0.3.0" />
+	</variables>
+	<decorators>
+		<group template="/wrap/page.tpl">
+			<include file="/wrap/content.tpl" />
+			<include file="/targets/index.html" />
+		</group>
+		<group template="/wrap/page.tpl">
+			<include file="/wrap/content.tpl" />
+			<include file="/targets/index.html" />
+		</group>
+	</decorators>
+</config>
+
+{
+	variables: {
+		version: '0.3.0',
+		'version.date': '2011-12-24',
+		'images.logo.src': '/assets/img/logo.png'
+	},
+	decorators: [
+		{
+			template: '/wrap/page.tpl',
+			includes: [
+				'/targets/index.html',
+				'/wrap/content.tpl'
+			],
+			excludes: []
+		}
+	]
+}
