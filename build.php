@@ -4,7 +4,7 @@ if ( !defined('ABSPATH') ) {
 }
 
 require_once('example/config.inc');
-require_once('filters/markdown.php');
+require_once('filters/php-markdown-extra/markdown.php');
 
 
 
