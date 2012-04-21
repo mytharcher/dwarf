@@ -1,3 +1,0 @@
-[submodule "filters/php-markdown-extra"]
-	path = filters/php-markdown-extra
-	url = git://github.com/mytharcher/PHP-Markdown-Extra
