@@ -1,6 +1,24 @@
 ﻿Dwarf Site Builder
 ==================
 
+该项目通过特定的模板规则和Markdown插件生成纯静态的文档类内容站点。
+
+Usage
+-----
+
+0.  下载仓库代码到本地Apache服务器下（最好建一个虚拟站点）。
+
+0.  在浏览器中访问以下地址触发站点生成操作：
+	
+		http://yourhost/build.php?p=<project path>&o=<output path>
+
+	以上`path`均为相对路径。需要确保对`output path`有写权限。
+
+0.	站点的模板语法和结构参见`example`目录。
+
+History
+-------
+
 矮人在有和精灵一起的剧情里，总是以一种干吃苦活的次要身份出现。
 
 在[elf+js]项目里，用于构建官方网站的这个程序就是这样。在了解github上可以使用更强大的[jekyll](http://github.com/mojombo/jekyll)之前，由于受不了一个一个页面构建的痛苦，然后就开发了这个构建脚本。等站点开发完，才发现原来github早就集成了jekyll，版本控制不说，加上全程托管和域名指向，什么都可以搞定了，根本不用我在这费事。
