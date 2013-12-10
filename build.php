@@ -3,8 +3,7 @@ if ( !defined('ABSPATH') ) {
 	define('ABSPATH', dirname(__FILE__) . '/');
 }
 
-require_once('example/config.inc');
-require_once('filters/php-markdown-extra/markdown.php');
+require_once('filters/php-markdown/markdown.php');
 
 
 
@@ -42,18 +41,20 @@ class LogBuffer {
 }
 
 function parse_param() {
+	global $argv;
 	return isset($argv) ? parse_cli_param() : parse_http_param();
 }
 
 function parse_http_param() {
 	$param = array();
-	foreach ($_POST as $key => $value) {
+	foreach ($_GET as $key => $value) {
 		$param[$key] = $value;
 	}
 	return $param;
 }
 
 function parse_cli_param() {
+	global $argv;
 	$param = array();
 	for ($i = 1, $len = count($argv); $i < $len; $i += 2) {
 		$key = $argv[$i];
@@ -66,11 +67,23 @@ function parse_cli_param() {
 	return $param;
 }
 
+function parse_param_path(&$options, $keys) {
+	global $argv;
+
+	foreach ($keys as $key) {
+		if (isset($argv)) {
+			$options[$key] = dirname(__FILE__) . '/' . $options[$key];
+		} else {
+			$options[$key] = $_SERVER['DOCUMENT_ROOT'] . '/' . $options[$key];
+		}
+	}
+}
+
 /**
- * »ñÈ¡Ä³¸öÎÄ¼þ¼ÐÏÂµÄËùÓÐÎÄ¼þÁÐ±í£¬ÒÔ¡°.¡±¿ªÍ·µÄ³ýÍâ
- * @param {String} $path Òª¼ÆËãµÄÎÄ¼þ(ÁÐ±í/ÎÄ¼þ¼Ð)Â·¾¶£¬¿ÉÒÔÊÇÎÄ¼þÂ·¾¶£¬ÎÄ¼þ¼ÐÂ·¾¶£¬»òÕßÎÄ¼þÂ·¾¶Êý×é
- * @param {String} $baseDir »ùÓÚ²éÑ¯µÄÄ¿Â¼
- * @param {Boolean} $deep ÊÇ·ñµÝ¹é»ñÈ¡Éî²ãµÄÎÄ¼þ
+ * èŽ·å–æŸä¸ªæ–‡ä»¶å¤¹ä¸‹çš„æ‰€æœ‰æ–‡ä»¶åˆ—è¡¨ï¼Œä»¥â€œ.â€å¼€å¤´çš„é™¤å¤–
+ * @param {String} $path è¦è®¡ç®—çš„æ–‡ä»¶(åˆ—è¡¨/æ–‡ä»¶å¤¹)è·¯å¾„ï¼Œå¯ä»¥æ˜¯æ–‡ä»¶è·¯å¾„ï¼Œæ–‡ä»¶å¤¹è·¯å¾„ï¼Œæˆ–è€…æ–‡ä»¶è·¯å¾„æ•°ç»„
+ * @param {String} $baseDir åŸºäºŽæŸ¥è¯¢çš„ç›®å½•
+ * @param {Boolean} $deep æ˜¯å¦é€’å½’èŽ·å–æ·±å±‚çš„æ–‡ä»¶
  */
 function get_dir_list($path = './', $baseDir = './', $deep = false) {
 	$list = array();
@@ -280,14 +293,19 @@ function markdown_handler ($file, $base, $dest) {
 	LogBuffer::push("parsed the target file '$file' as markdown syntax with including and wrapping, wrote file content to '$d' successfully<br />");
 }
 
-function build () {
+function build() {
+	$options = parse_param();
+	parse_param_path($options, array('o', 'p'));
+
 	header('Content-type:text/html; charset=utf-8');
 	//$options = parse_param();
 	
 	LogBuffer::push('Build start<br />');
 	
-	$base = $_SERVER['DOCUMENT_ROOT'] . $_GET['p'];
-	$dest = $_SERVER['DOCUMENT_ROOT'] . $_GET['o'];
+	$base = $options['p'];
+	$dest = $options['o'];
+
+	require_once($base . '/config.inc');
 	
 	LogBuffer::push("Project path: $base<br />");
 	LogBuffer::push("Build destination: $dest<br />");

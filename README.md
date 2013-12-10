@@ -6,15 +6,29 @@
 Usage
 -----
 
-0.  下载仓库代码到本地Apache服务器下（最好建一个虚拟站点）。
+下载项目：
+
+	$ git clone https://github.com/mytharcher/dwarf.git
+
+### 命令行方式 ###
+
+在命令行运行PHP脚本：
+	
+	$ cd path/to/dwarf
+	$ mkdir output && chmod 777 output
+	$ php build.php -p example -o output
+
+### Web方式 ###
+
+0.	下载仓库代码到本地Apache服务器下（最好建一个虚拟站点）。
 
 0.  在浏览器中访问以下地址触发站点生成操作：
 	
 		http://yourhost/build.php?p=<project path>&o=<output path>
 
-	以上`path`均为相对路径。需要确保对`output path`有写权限。
+	以上`path`均为相对路径。需要确保`output path`目录存在且服务器有写权限。不需要加前置和结尾的`/`。
 
-0.	站点的模板语法和结构参见`example`目录。
+站点的模板语法和结构参见`example`目录。
 
 History
 -------
