@@ -28,8 +28,6 @@ Usage
 
 	以上`path`均为相对路径。需要确保`output path`目录存在且服务器有写权限。不需要加前置和结尾的`/`。
 
-站点的模板语法和结构参见`example`目录。
-
 Template and Syntax
 -------------------
 
@@ -99,6 +97,12 @@ Dwarf支持几种简单的模板语法：变量定义，模板包含和母版包
     <!-- placeholder(name) -->
 
 这样在替换时引入目标模板的内容块到母版中了。
+
+#### Markdown ####
+
+Dwarf使用了<https://github.com/michelf/php-markdown>项目的Markdown解释器，并针对文档大纲（Table of Content）的生成做了对应的修改。在`.text`文件中具体使用时，只需加入`[TOC]`即可在模板中生成大纲内容。
+
+更多的站点模板语法和结构参见`example`目录。
 
 History
 -------
